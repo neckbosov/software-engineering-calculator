@@ -10,13 +10,13 @@ import io.ktor.locations.*
 import io.ktor.serialization.*
 
 fun main() {
-    //val backend = createSimpleBackend()
+    val backend = createSimpleBackend()
 
     embeddedServer(Netty, port = 8080) {
         install(ContentNegotiation) {
             json()
         }
         install(Locations)
-        configureCalculatorRouting()
+        configureCalculatorRouting(backend)
     }.start(wait = true)
 }

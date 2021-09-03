@@ -7,9 +7,11 @@ import io.ktor.locations.*
 import io.ktor.response.*
 import io.ktor.request.*
 
+@OptIn(KtorExperimentalLocationsAPI::class)
 @Location("/{name}")
 internal data class HistoryLocation(val name: String, val limit: Int)
 
+@OptIn(KtorExperimentalLocationsAPI::class)
 fun Application.configureCalculatorRouting(backend: AbstractBackend) {
 
     // TODO exceptions catching
