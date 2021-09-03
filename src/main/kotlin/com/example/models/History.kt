@@ -3,6 +3,6 @@ package com.example.models
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CalculationResult(
-    val result: Double,
+data class History(
+    val infoList: List<CalculationInfo>
 )
