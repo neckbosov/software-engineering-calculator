@@ -1,3 +1,3 @@
 package com.example.models
 
-class CalculatorException(description: String): Exception(description)
+class CalculatorException(val description: String): Exception(description)

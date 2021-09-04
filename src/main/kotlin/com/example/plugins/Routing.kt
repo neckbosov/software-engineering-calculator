@@ -3,6 +3,7 @@ package com.example.plugins
 import com.example.models.*
 import io.ktor.routing.*
 import io.ktor.application.*
+import io.ktor.http.*
 import io.ktor.locations.*
 import io.ktor.response.*
 import io.ktor.request.*
@@ -18,8 +19,13 @@ fun Application.configureCalculatorRouting(backend: AbstractBackend) {
     routing {
         post("/calculate") {
             val calculationRequest = call.receive<CalculationRequest>()
-            val result = backend.calculate(calculationRequest)
-            call.respond(result)
+            try {
+                val result = backend.calculate(calculationRequest)
+                call.respond(status = HttpStatusCode.OK, result)
+            } catch (e: CalculatorException) {
+                val error = ErrorResponse(e.description)
+                call.respond(status = HttpStatusCode.NotFound, error)
+            }
         }
 
         get<HistoryLocation> {
