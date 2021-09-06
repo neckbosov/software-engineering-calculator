@@ -3,8 +3,8 @@ package com.example.simple
 import com.example.models.*
 
 class SimpleBackend(
-    val calculator: SimpleCalculator,
-    val history: SimpleHistory,
+    private val calculator: SimpleCalculator,
+    private val history: SimpleHistory,
 ) : AbstractBackend {
     override fun calculate(calculationRequest: CalculationRequest): CalculationResult {
         return CalculationResult(
