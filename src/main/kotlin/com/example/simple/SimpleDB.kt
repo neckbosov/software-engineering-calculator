@@ -5,10 +5,11 @@ import com.example.models.CalculationInfo
 
 class SimpleDB: AbstractDB {
     override fun insert(stringExpression: String, result: Double) {
-        TODO("Not yet implemented")
+        println("NO-OP DB: ${stringExpression}=${result}")
     }
 
     override fun history(limit: Int): List<CalculationInfo> {
-        TODO("Not yet implemented")
+        println("NO-OP DB: ~~history~~")
+        return emptyList()
     }
 }
