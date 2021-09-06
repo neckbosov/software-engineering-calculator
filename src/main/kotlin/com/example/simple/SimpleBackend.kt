@@ -7,10 +7,12 @@ class SimpleBackend(
     val history: SimpleHistory,
 ) : AbstractBackend {
     override fun calculate(calculationRequest: CalculationRequest): CalculationResult {
-        TODO("Not yet implemented")
+        return CalculationResult(
+            calculator.calculate(calculationRequest.stringExpression)
+        )
     }
 
     override fun history(limit: Int): History {
-        TODO("Not yet implemented")
+        return History(history.history(limit))
     }
 }
