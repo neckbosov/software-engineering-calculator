@@ -4,11 +4,12 @@ import com.example.models.*
 
 class SimpleBackend(
     private val calculator: SimpleCalculator,
-    val history: SimpleHistory,
+    private val history: SimpleHistory,
 ) : AbstractBackend {
     override fun calculate(calculationRequest: CalculationRequest): CalculationResult {
-
-        return CalculationResult(calculator.calculate(calculationRequest.stringExpression))
+        return CalculationResult(
+            calculator.calculate(calculationRequest.stringExpression)
+        )
     }
 
     override fun history(limit: Int): History {

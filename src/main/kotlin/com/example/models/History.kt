@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class History(
-    val infoList: List<CalculationInfo>
+    val history: List<CalculationInfo>
 )
