@@ -3,14 +3,15 @@ package com.example.simple
 import com.example.models.*
 
 class SimpleBackend(
-    val calculator: SimpleCalculator,
+    private val calculator: SimpleCalculator,
     val history: SimpleHistory,
 ) : AbstractBackend {
     override fun calculate(calculationRequest: CalculationRequest): CalculationResult {
-        TODO("Not yet implemented")
+
+        return CalculationResult(calculator.calculate(calculationRequest.stringExpression))
     }
 
     override fun history(limit: Int): History {
-        TODO("Not yet implemented")
+        return History(history.history(limit))
     }
 }
