@@ -18,7 +18,7 @@ export default class Calculator extends React.Component {
     };
 
     fetchHistory = () => {
-        axios.get('http://localhost:8080/history')
+        axios.get('http://localhost:8080/history', { validateStatus: false })
             .then(resp => {
                 console.log(resp.data);
                 this.setState({
@@ -38,15 +38,15 @@ export default class Calculator extends React.Component {
         if (buttonName === '=') {
             axios.post('http://localhost:8080/calculate', {
                 expression: this.state.value === null ? 0 : this.state.value
-            })
+            }, { validateStatus: false })
                 .then(resp => {
                     if (resp.status === 200) {
-                        console.log("here")
                         this.setState({
                             result: resp.data.result,
                             value: null
                         })
                     } else {
+                        console.log("here")
                         this.setState({
                             result: resp.data.message,
                             value: null
