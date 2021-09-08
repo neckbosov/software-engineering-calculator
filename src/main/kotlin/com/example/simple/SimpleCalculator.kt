@@ -12,7 +12,6 @@ class SimpleCalculator(val db: AbstractDB) : AbstractCalculator {
     override fun calculate(stringExpression: String): Double {
         try {
             val result = Keval.eval(stringExpression)
-            println("NO-OP calculator: ${stringExpression} = %d!".format(result))
             db.insert(stringExpression, result)
             return result
         } catch (e: KevalZeroDivisionException) {
