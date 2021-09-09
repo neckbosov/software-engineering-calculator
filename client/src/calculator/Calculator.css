@@ -1,0 +1,8 @@
+.calculator {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 800px;
+    height: auto;
+}

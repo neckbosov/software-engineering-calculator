@@ -11,6 +11,7 @@ import com.example.plugins.*
 import com.example.simple.SimpleBackend
 import com.example.simple.SimpleCalculator
 import com.example.simple.SimpleHistory
+import io.ktor.http.*
 import io.ktor.locations.*
 import io.ktor.serialization.*
 import kotlinx.cli.*
@@ -32,6 +33,15 @@ fun main(args: Array<String>) {
     val backend = SimpleBackend(SimpleCalculator(ExposedDB), SimpleHistory(ExposedDB))
 
     embeddedServer(Netty, port = 8080) {
+        install(CORS)
+        {
+            method(HttpMethod.Options)
+            header(HttpHeaders.XForwardedProto)
+            anyHost()
+            host("my-host")
+            allowCredentials = true
+            allowNonSimpleContentTypes = true
+        }
         install(ContentNegotiation) {
             json()
         }

@@ -35,12 +35,12 @@ dependencies {
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
 
-    implementation("com.notkamui.libs:keval:0.7.4")
+    implementation("com.notkamui.libs:keval:0.7.5")
     implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-dao:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
-    implementation("org.postgresql:postgresql:42.2.2")
-    implementation("com.h2database:h2:1.4.199")
+    implementation("org.postgresql:postgresql:42.2.23.jre7")
+    implementation("com.h2database:h2:1.4.200")
 
     implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.3")
 }

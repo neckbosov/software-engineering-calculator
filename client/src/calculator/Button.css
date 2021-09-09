@@ -1,0 +1,14 @@
+.button {
+    text-align: center;
+    width: 182px;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.button.wide {
+    width: 388px;
+}
+
+.button:last-child button {
+    margin-right: 0;
+}
