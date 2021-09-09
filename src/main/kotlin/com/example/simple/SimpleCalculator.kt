@@ -8,10 +8,32 @@ import com.notkamui.keval.KevalInvalidExpressionException
 import com.notkamui.keval.KevalZeroDivisionException
 import com.example.models.AbstractDB
 
+fun String.fixUnaryMinus(): String {
+    val components = split('-')
+    return buildString {
+        for ((index, component) in components.withIndex()) {
+            when {
+                index == 0 -> {
+                    if (component == "") {
+                        append('0')
+                    }
+                }
+                components[index - 1].endsWith('(') -> append("0-")
+                else -> append("-")
+            }
+            append(component)
+        }
+    }
+}
+
 class SimpleCalculator(val db: AbstractDB) : AbstractCalculator {
     override fun calculate(stringExpression: String): Double {
+        if (stringExpression.contains("--")) {
+            throw CalculatorException("Invalid expression!")
+        }
+        val unaryMinusFixedExpression = stringExpression.replace(" ", "").fixUnaryMinus()
         try {
-            val result = Keval.eval(stringExpression)
+            val result = Keval.eval(unaryMinusFixedExpression)
             db.insert(stringExpression, result)
             return result
         } catch (e: KevalZeroDivisionException) {

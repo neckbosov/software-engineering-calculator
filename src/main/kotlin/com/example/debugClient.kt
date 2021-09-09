@@ -8,6 +8,7 @@ import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 
 suspend fun main() {
+
     val client = HttpClient(CIO) {
         install(JsonFeature) {
             serializer = KotlinxSerializer()
@@ -17,8 +18,8 @@ suspend fun main() {
     val response: String = client.post("http://0.0.0.0:8080/calculate") {
 
         contentType(ContentType.Application.Json)
-        body = CalculationRequest("1+3")
-
+       body = CalculationRequest("-5+(-1+3)+(-6-7)")
+        //body = CalculationRequest("0-5+(0-1+3)+(0-6-7)")
     }
 
 
