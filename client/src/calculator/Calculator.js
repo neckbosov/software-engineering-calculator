@@ -48,6 +48,7 @@ export default class Calculator extends React.Component {
             }, {validateStatus: false})
                 .then(resp => {
                     if (resp.status === 200) {
+                        this.fetchHistory()
                         this.setState({
                             result: resp.data.result,
                             value: this.state.inputValue,
@@ -55,10 +56,9 @@ export default class Calculator extends React.Component {
                             currIndx: 0
                         })
                     } else {
-                        console.log("here")
                         this.setState({
                             result: resp.data.message,
-                            value: null,
+                            value: this.state.inputValue,
                             inputValue: null,
                             currIndx: -1
                         })
@@ -66,7 +66,6 @@ export default class Calculator extends React.Component {
                 }).catch(e => {
                 console.log(e)
             })
-            this.fetchHistory()
         } else if (buttonName === "DEL") {
             this.setState({
                 result: null,
